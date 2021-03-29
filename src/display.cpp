@@ -5,11 +5,12 @@
 #include "SPI.h"
 #include "stdio.h"
 #include "lv_PM_25.h"
+#include <sensor.h>
 #include <utility.h>
 
 #define LVGL_TICK_PERIOD 60
 
-TickTask updateLCD_tick(1000U);
+TickTask updateLCD_tick(2000U);
 
 TFT_eSPI tft = TFT_eSPI(); /* TFT instance */
 static lv_disp_buf_t disp_buf;
@@ -103,8 +104,14 @@ void lcd_run()
 {
     lv_task_handler(); /* let the GUI do its work */
     //delay(5);
-    if( updateLCD_tick.Update()){
-        update_aqi_value(count++);
+    if(updateLCD_tick.Update()){
+        update_aqi_value(sensor.getAQI25());
+        //update_pm2dot5_value(sensor.get_pm2_5());data.pm25_env
+        update_pm2dot5_value(data.pm25_env);
+        update_pm1dot0_value(data.pm10_env);
+        //update_pm10_value(sensor.get_pm10());
+        update_pm10_value(data.pm100_env);
+        update_temp_value((int)sensor.get_temperature());
+        update_rh_value((int)sensor.get_humidity());
     }
-    
 }

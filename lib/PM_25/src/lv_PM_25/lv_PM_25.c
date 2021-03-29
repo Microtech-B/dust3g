@@ -259,7 +259,7 @@ static void PM_25_open()
     label = lv_label_create(lv_scr_act(), NULL);
     lv_label_set_recolor(label, true);                      /*Enable re-coloring by commands in the text*/
     lv_label_set_align(label, LV_LABEL_ALIGN_CENTER);       /*Center aligned lines*/
-    lv_label_set_text(label, "C0");
+    lv_label_set_text(label, "°C");
     lv_obj_set_pos(label, 433, 70);  
     lv_obj_add_style(label, LV_OBJ_PART_MAIN, &font_color_393939);
     lv_obj_add_style(label, LV_OBJ_PART_MAIN, &st_kanit_16);
@@ -284,7 +284,7 @@ static void PM_25_open()
     label = lv_label_create(lv_scr_act(), NULL);
     lv_label_set_recolor(label, true);                      /*Enable re-coloring by commands in the text*/
     lv_label_set_align(label, LV_LABEL_ALIGN_CENTER);       /*Center aligned lines*/
-    lv_label_set_text(label, "Humidity");
+    lv_label_set_text(label, "Humi");
     lv_obj_set_pos(label, 322, 142);  
     lv_obj_add_style(label, LV_OBJ_PART_MAIN, &font_color_393939);
     lv_obj_add_style(label, LV_OBJ_PART_MAIN, &st_kanit_16);
@@ -333,7 +333,7 @@ static void PM_25_open()
     label_value_aqi = lv_label_create(lv_scr_act(), NULL);
     lv_label_set_recolor(label_value_aqi, true);                      /*Enable re-coloring by commands in the text*/
     lv_label_set_align(label_value_aqi, LV_LABEL_ALIGN_RIGHT);       /*Center aligned lines*/
-    lv_label_set_text(label_value_aqi, "115");
+    lv_label_set_text(label_value_aqi, "1");
     lv_obj_set_pos(label_value_aqi, 394, 197);  
     lv_obj_add_style(label_value_aqi, LV_OBJ_PART_MAIN, &font_color_5971fe);
     lv_obj_add_style(label_value_aqi, LV_OBJ_PART_MAIN, &st_kanit_34);
@@ -375,7 +375,7 @@ static void PM_25_open()
     lv_label_set_recolor(label, true);                      /*Enable re-coloring by commands in the text*/
     lv_label_set_align(label, LV_LABEL_ALIGN_CENTER);       /*Center aligned lines*/
     lv_obj_set_pos(label, 336, 258);
-    lv_label_set_text(label, "S/n :");
+    lv_label_set_text(label, "S/N :");
     lv_obj_add_style(label, LV_OBJ_PART_MAIN, &font_color_393939);
     lv_obj_add_style(label, LV_OBJ_PART_MAIN, &st_kanit_14);
     // label_Status
@@ -391,7 +391,7 @@ static void PM_25_open()
     lv_label_set_recolor(label, true);                      /*Enable re-coloring by commands in the text*/
     lv_label_set_align(label, LV_LABEL_ALIGN_CENTER);       /*Center aligned lines*/
     lv_obj_set_pos(label, 336, 288);
-    lv_label_set_text(label, "Firmware :");
+    lv_label_set_text(label, "FW :");
     lv_obj_add_style(label, LV_OBJ_PART_MAIN, &font_color_393939);
     lv_obj_add_style(label, LV_OBJ_PART_MAIN, &st_kanit_14);
 }

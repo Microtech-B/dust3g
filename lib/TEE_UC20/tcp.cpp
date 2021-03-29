@@ -379,6 +379,8 @@ void TCP::Ping(unsigned char contextid,String ip_url)
 }
 String TCP::NTP(unsigned char contexid,String ip_url,String port)
 {
+	// gsm.print("AT+CTZR=1");
+	// delay(3000);
 	gsm.print("AT+QNTP=");
 	gsm.print(String(contexid));
 	gsm.print(",\"");

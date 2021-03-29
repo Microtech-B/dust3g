@@ -1,6 +1,7 @@
 #include "TEE_UC20.h"
 
-int START_PIN = 4;
+// int START_PIN = 4;
+int START_PIN = 14;
 UC20 gsm;
 unsigned long previousMillis_timeout = 0; 
 
