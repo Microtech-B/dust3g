@@ -67,7 +67,6 @@ void loop()
 
 void LCD_task(void *pvParameter) {
   Serial.println("LCD task start...");
-
   while(1){
       lcd_run();
       vTaskDelay(1);

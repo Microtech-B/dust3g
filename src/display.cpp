@@ -15,6 +15,8 @@ TFT_eSPI tft = TFT_eSPI(); /* TFT instance */
 static lv_disp_buf_t disp_buf;
 static lv_color_t buf[LV_HOR_RES_MAX * 10];
 
+int count = 0;
+
 #if USE_LV_LOG != 0
 /* Serial debugging */
 void my_print(lv_log_level_t level, const char *file, uint32_t line, const char *dsc)
@@ -47,7 +49,6 @@ bool read_encoder(lv_indev_drv_t *indev, lv_indev_data_t *data)
     int btn_state = LV_INDEV_STATE_REL; /* Dummy - no press */
 
     data->enc_diff = diff - last_diff;
-    ;
     data->state = btn_state;
 
     last_diff = diff;
@@ -95,14 +96,15 @@ void lcd_init()
     // lv_obj_t *label = lv_label_create(lv_scr_act(), NULL);
     // lv_label_set_text(label, "Hello Dust monitor 3G!");
     // lv_obj_align(label, NULL, LV_ALIGN_CENTER, 0, 0);
+    lv_PM_25();
 }
 
 void lcd_run()
 {
     lv_task_handler(); /* let the GUI do its work */
     //delay(5);
-    //if( updateLCD_tick.Update()){
-        lv_PM_25();
-    //}
+    if( updateLCD_tick.Update()){
+        update_aqi_value(count++);
+    }
     
 }
