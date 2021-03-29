@@ -1,8 +1,11 @@
 #ifndef SENSOR_H
 #define SENSOR_H
 
-#define PMS_RX 21
-#define PMS_TX 22
+#define PMS_RX 33
+#define PMS_TX 32
+
+// #define I2C_SDA 32
+// #define I2C_SCL 33
 
 class AirSensor
 {

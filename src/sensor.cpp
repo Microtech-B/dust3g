@@ -2,17 +2,22 @@
 #include <SoftwareSerial.h>
 #include <Wire.h>
 #include <main.h>
+// #include <Adafruit_Sensor.h>
 #include <Adafruit_AM2315.h>
 
 
 SoftwareSerial mySerial(PMS_RX, PMS_TX); // RX, TX
+// TwoWire Wire = TwoWire(0);
+
 Adafruit_AM2315 am2315;
 
 void AirSensor::sensor_init(){
      mySerial.begin(9600);
-     if (! am2315.begin()) {
+
+     if (! am2315.begin() ){
      Serial.println("Sensor not found, check wiring & pullups!");
   }
+  
 }
 
 bool AirSensor::readAM2315(){
@@ -71,7 +76,7 @@ void AirSensor::readPMSdust(){
       mySerial.read();
       }
       
-  Serial.println(" }");
+  // Serial.println(" }");
 }
 
 

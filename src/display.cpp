@@ -7,6 +7,8 @@
 #include "lv_PM_25.h"
 #include <utility.h>
 
+#define LVGL_TICK_PERIOD 60
+
 TickTask updateLCD_tick(1000U);
 
 TFT_eSPI tft = TFT_eSPI(); /* TFT instance */
@@ -53,6 +55,13 @@ bool read_encoder(lv_indev_drv_t *indev, lv_indev_data_t *data)
     return false;
 }
 
+/* Interrupt driven periodic handler */
+static void lv_tick_handler(void)
+{
+
+  lv_tick_inc(LVGL_TICK_PERIOD);
+}
+
 void lcd_init()
 {
     lv_init();
@@ -91,10 +100,9 @@ void lcd_init()
 void lcd_run()
 {
     lv_task_handler(); /* let the GUI do its work */
-    // delay(5);
-    if( updateLCD_tick.Update()){
+    //delay(5);
+    //if( updateLCD_tick.Update()){
         lv_PM_25();
-    }
+    //}
     
-
 }
