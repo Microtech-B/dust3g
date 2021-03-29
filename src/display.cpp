@@ -5,6 +5,9 @@
 #include "SPI.h"
 #include "stdio.h"
 #include "lv_PM_25.h"
+#include <utility.h>
+
+TickTask updateLCD_tick(1000U);
 
 TFT_eSPI tft = TFT_eSPI(); /* TFT instance */
 static lv_disp_buf_t disp_buf;
@@ -79,15 +82,19 @@ void lcd_init()
     indev_drv.read_cb = read_encoder;
     lv_indev_drv_register(&indev_drv);
 
-    /* Create simple label */
-    lv_obj_t *label = lv_label_create(lv_scr_act(), NULL);
-    lv_label_set_text(label, "Hello Dust monitor 3G!");
-    lv_obj_align(label, NULL, LV_ALIGN_CENTER, 0, 0);
+    // /* Create simple label */
+    // lv_obj_t *label = lv_label_create(lv_scr_act(), NULL);
+    // lv_label_set_text(label, "Hello Dust monitor 3G!");
+    // lv_obj_align(label, NULL, LV_ALIGN_CENTER, 0, 0);
 }
 
 void lcd_run()
 {
-    // lv_task_handler(); /* let the GUI do its work */
+    lv_task_handler(); /* let the GUI do its work */
     // delay(5);
-    lv_PM_25();
+    if( updateLCD_tick.Update()){
+        lv_PM_25();
+    }
+    
+
 }

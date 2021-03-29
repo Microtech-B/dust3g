@@ -1,22 +1,26 @@
 #include <sensor.h>
 #include <SoftwareSerial.h>
+#include <Wire.h>
 #include <main.h>
+#include <Adafruit_AM2315.h>
 
 
 SoftwareSerial mySerial(PMS_RX, PMS_TX); // RX, TX
+Adafruit_AM2315 am2315;
 
-unsigned int pm1 = 0;
-unsigned int pm2_5 = 0;
-unsigned int pm10 = 0;
-
-
-void pms_init(){
+void AirSensor::sensor_init(){
      mySerial.begin(9600);
+     if (! am2315.begin()) {
+     Serial.println("Sensor not found, check wiring & pullups!");
+  }
 }
 
+bool AirSensor::readAM2315(){
+  return am2315.readTemperatureAndHumidity(&temperature, &humidity);
+}
 
-void test_pmsDust(){
-    int index = 0;
+void AirSensor::readPMSdust(){
+  int index = 0;
   char value;
   char previousValue;
 
@@ -36,26 +40,26 @@ void test_pmsDust(){
     else if (index == 5)
     {
       pm1 = 256 * previousValue + value;
-      Serial.print("{ ");
-      Serial.print("\"pm1\": ");
-      Serial.print(pm1);
-      Serial.print(" ug/m3");
-      Serial.print(", ");
+      // Serial.print("{ ");
+      // Serial.print("\"pm1\": ");
+      // Serial.print(pm1);
+      // Serial.print(" ug/m3");
+      // Serial.print(", ");
     }
     else if (index == 7)
     {
       pm2_5 = 256 * previousValue + value;
-      Serial.print("\"pm2_5\": ");
-      Serial.print(pm2_5);
-      Serial.print(" ug/m3");
-      Serial.print(", ");
+      // Serial.print("\"pm2_5\": ");
+      // Serial.print(pm2_5);
+      // Serial.print(" ug/m3");
+      // Serial.print(", ");
     }
     else if (index == 9)
     {
       pm10 = 256 * previousValue + value;
-      Serial.print("\"pm10\": ");
-      Serial.print(pm10);
-      Serial.print(" ug/m3");
+      // Serial.print("\"pm10\": ");
+      // Serial.print(pm10);
+      // Serial.print(" ug/m3");
     }
     else if (index > 15)
     {
@@ -70,3 +74,27 @@ void test_pmsDust(){
   Serial.println(" }");
 }
 
+
+int AirSensor::get_pm1(){
+  return (int)pm1;
+}
+
+int AirSensor::get_pm2_5(){
+  return (int)pm2_5;
+}
+
+int AirSensor::get_pm10(){
+  return (int)pm10;
+}
+
+float AirSensor::get_temperature(){
+  return temperature;
+}
+
+float AirSensor::get_humidity(){
+  return humidity;
+}
+
+#if !defined(NO_GLOBAL_INSTANCES) && !defined(NO_GLOBAL_SENSOR)
+  AirSensor sensor;
+#endif

@@ -12,7 +12,7 @@ TickTask pmsTick(1000U);
 void setup()
 {
   Serial.begin(115200);
-  pms_init();
+  sensor.sensor_init();
   lcd_init();
 
   // //Init WiFi as Station, start SmartConfig
@@ -48,8 +48,13 @@ void loop()
 {
 
   lcd_run();
+
   if (pmsTick.Update())
   {
-    test_pmsDust();
+    sensor.readPMSdust();
+    if(!sensor.readAM2315()){
+       Serial.println("Failed to read data from AM2315");
+      return;
+    }
   }
 }

@@ -36,6 +36,7 @@ static void lv_anim_in(lv_obj_t * obj, uint32_t delay);
 /**********************
  *  STATIC VARIABLES
  **********************/
+
 static lv_obj_t *label_value_pm2dot5;
 static lv_obj_t *label_value_pm1dot0;
 static lv_obj_t *label_value_pm10;
@@ -87,6 +88,7 @@ static void set_bg()
     lv_style_set_bg_color(&bg_style, LV_STATE_DEFAULT, lv_color_hex(0xF6F8FB));
     lv_obj_add_style(lv_scr_act(), LV_OBJ_PART_MAIN, &bg_style);
 }
+
 static void PM_25_open(uint32_t delay)
 {
     set_bg();
