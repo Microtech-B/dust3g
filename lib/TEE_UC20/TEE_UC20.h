@@ -1,7 +1,7 @@
 #ifndef UC20_h
 #define UC20_h
 
-#define ATLSOFTSERIAL 1
+#define ATLSOFTSERIAL 0
 
 #include <Arduino.h>
 #include <Stream.h>

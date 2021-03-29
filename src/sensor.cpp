@@ -1,4 +1,5 @@
-#include <pms.h>
+#include <sensor.h>
+#include <SoftwareSerial.h>
 #include <main.h>
 
 
