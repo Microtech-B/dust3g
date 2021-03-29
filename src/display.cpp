@@ -4,6 +4,7 @@
 #include "display.h"
 #include "SPI.h"
 #include "stdio.h"
+#include "lv_PM_25.h"
 
 TFT_eSPI tft = TFT_eSPI(); /* TFT instance */
 static lv_disp_buf_t disp_buf;
@@ -86,6 +87,7 @@ void lcd_init()
 
 void lcd_run()
 {
-    lv_task_handler(); /* let the GUI do its work */
+    // lv_task_handler(); /* let the GUI do its work */
     // delay(5);
+    lv_PM_25();
 }
