@@ -26,9 +26,12 @@ extern "C" {
  * GLOBAL PROTOTYPES
  **********************/
 void lv_PM_25(void);
-void update_temp_value(int temp_value);
-void update_rh_value(int rh_value);
-void update_aqi_value(int aqi_value);
+void update_pm2dot5_value(int value);
+void update_pm1dot0_value(int value);
+void update_pm10_value(int value);
+void update_temp_value(int value);
+void update_rh_value(int value);
+void update_aqi_value(int value);
 
 /**********************
  *      MACROS

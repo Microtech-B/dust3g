@@ -30,7 +30,6 @@
  **********************/
 static void set_bg();
 static void PM_25_open(uint32_t delay);
-
 static void lv_anim_in(lv_obj_t * obj, uint32_t delay);
 
 /**********************
@@ -44,11 +43,9 @@ static lv_obj_t *label_value_temp;
 static lv_obj_t *label_value_rh;
 static lv_obj_t *label_value_aqi;
 
-static lv_style_t font_kanit_16;
-static lv_style_t font_kanit_20;
-
 LV_IMG_DECLARE(signal)
 LV_IMG_DECLARE(wifi)
+LV_IMG_DECLARE(circle)
 LV_IMG_DECLARE(men_mask)
 LV_IMG_DECLARE(temp)
 LV_IMG_DECLARE(rh)
@@ -156,6 +153,12 @@ static void PM_25_open(uint32_t delay)
     img = lv_img_create(lv_scr_act(), NULL); /*Crate an image object*/
     lv_img_set_src(img, &men_mask);              /*Set the created file as image (a red flower)*/
     lv_obj_set_pos(img, 138.56, 87);                        /*Set the positions*/
+    lv_obj_set_drag(img, false);
+    lv_anim_in(img, delay);
+    // IMG_circle
+    img = lv_img_create(lv_scr_act(), NULL); /*Crate an image object*/
+    lv_img_set_src(img, &circle);              /*Set the created file as image (a red flower)*/
+    lv_obj_set_pos(img, 61.15, 37.65);                        /*Set the positions*/
     lv_obj_set_drag(img, false);
     lv_anim_in(img, delay);
     // label_t_pm_25
@@ -418,23 +421,41 @@ static void lv_anim_in(lv_obj_t * obj, uint32_t delay)
 /**********************
  *   GLOBAL FUNCTIONS
  **********************/
-void update_temp_value(int temp_value)
+void update_pm2dot5_value(int value)
 {
-    char value[10];
-    sprintf(value, "%d", temp_value);
-    lv_label_set_text(label_value_temp, value);
+    char show_value[10];
+    sprintf(show_value, "%d", value);
+    lv_label_set_text(label_value_pm2dot5, show_value);
 }
-void update_rh_value(int rh_value)
+void update_pm1dot0_value(int value)
 {
-    char value[10];
-    sprintf(value, "%d", rh_value);
-    lv_label_set_text(label_value_rh, value);
+    char show_value[10];
+    sprintf(show_value, "%d", value);
+    lv_label_set_text(label_value_pm1dot0, show_value);
 }
-void update_aqi_value(int aqi_value)
+void update_pm10_value(int value)
 {
-    char value[10];
-    sprintf(value, "%d", aqi_value);
-    lv_label_set_text(label_value_aqi, value);
+    char show_value[10];
+    sprintf(show_value, "%d", value);
+    lv_label_set_text(label_value_pm10, show_value);
+}
+void update_temp_value(int value)
+{
+    char show_value[10];
+    sprintf(show_value, "%d", value);
+    lv_label_set_text(label_value_temp, show_value);
+}
+void update_rh_value(int value)
+{
+    char show_value[10];
+    sprintf(show_value, "%d", value);
+    lv_label_set_text(label_value_rh, show_value);
+}
+void update_aqi_value(int value)
+{
+    char show_value[10];
+    sprintf(show_value, "%d", value);
+    lv_label_set_text(label_value_aqi, show_value);
 }
 
 void lv_PM_25(void)
